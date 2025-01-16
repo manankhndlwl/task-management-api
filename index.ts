@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import authRoutes from './routes/auth.ts';
+import taskRoutes from './routes/tasks.ts';
 
 dotenv.config();
 
@@ -17,7 +18,7 @@ mongoose.connect(process.env.MONGO_URI!)
   .catch((error) => console.error('MongoDB connection error:', error));
 
   app.use('/api/auth', authRoutes);
-
+  app.use('/api/tasks', taskRoutes);
 
   const PORT = process.env.PORT || 3000;
   app.listen(PORT, () => {
